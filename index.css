@@ -1,0 +1,38 @@
+*{
+    
+}
+
+.type3 {
+    width: 100vw;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background-color: hsl(299, 89%, 51%);
+  }
+
+  .increinner-div{
+    width: 40vw;
+    background-color: rgb(122, 118, 118);
+    padding: 3rem 8rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem -0.7rem rgba(0,0,0,0.4);
+  }
+
+  section{
+    width: 30vw;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+  }
+  h1{
+    text-align: center;
+  }
+  .choice{
+    width: 10vw;
+    height: 90%;
+    padding: 20px;
+    margin: 10px;
+    background: #fafafa;
+    box-sizing: border-box;
+  }

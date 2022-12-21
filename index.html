@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drag And Drop</title>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <style>
+      .type3 {
+        width: 100vw;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background-color: hsl(299, 89%, 51%);
+      }
+
+      .increinner-div {
+        width: 40vw;
+        background-color: rgb(122, 118, 118);
+        padding: 3rem 8rem;
+        border-radius: 1rem;
+        box-shadow: 0 1rem 1rem -0.7rem rgba(0, 0, 0, 0.4);
+      }
+
+      section {
+        width: 30vw;
+        height: 200px;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+      }
+      h1 {
+        text-align: center;
+      }
+      .choice {
+        width: 10vw;
+        height: 90%;
+        padding: 20px;
+        margin: 10px;
+        background: #e98888;
+        box-sizing: border-box;
+      }
+      .element{
+        text-align: center;
+        background: #fafafa;
+      }
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <div id="three" class="type3">
+      <div id="threein" class="increinner-div">
+        <h2 class="increquestion">Rnak In Order As Your Choice</h2>
+        <section>
+          <div class="choice">
+            <p id="first" class="element" draggable="true"></p>
+            <p id="second" class="element" draggable="true"></p>
+            <p id="third" class="element" draggable="true"></p>
+            <p id="fourth" class="element" draggable="true"></p>
+          </div>
+          <div class="choice" id="check">
+            <!-- <p id="first1"></p>
+            <p id="second2"></p>
+            <p id="third3"></p>
+            <p id="fourth4"></p> -->
+          </div>
+          
+        </section>
+        <button id="submit3" class="submit">submit</button>
+      </div>
+    </div>
+
+    <script>
+    //     quiz = {
+    //         question:[4,3,1,2],
+    //         answer:[1,2,3,4]
+    // }
+
+    const quizq = {
+        one: [
+            {
+                question:[4,1,2,3],
+                answer:["second","third","fourth","first"]
+            }
+        ]
+    }
+
+
+    let first = document.querySelector("#first");
+    let second = document.querySelector("#second");
+    let third = document.querySelector("#third");
+    let fourth = document.querySelector("#fourth");
+
+
+
+    // let first1 = document.querySelector("#first1");
+    // let second2 = document.querySelector("#second2");
+    // let third3 = document.querySelector("#third3");
+    // let fourth4 = document.querySelector("#fourth4");
+
+
+    let check = document.querySelector("#check");
+
+
+
+    first.innerHTML = quizq.one[0].question[0];
+    second.innerHTML = quizq.one[0].question[1];
+    third.innerHTML = quizq.one[0].question[2];
+    fourth.innerHTML = quizq.one[0].question[3];
+
+
+        let abc = quizq.one[0].question[0];
+        console.log("answer:" + abc );
+
+        let element = document.getElementsByClassName("element");
+        let choice = document.getElementsByClassName("choice");
+        let dragItem = null;
+
+        for(let i of element){
+            i.addEventListener('dragstart', dragStart);
+            i.addEventListener('dragend', dragEnd);
+        }
+
+        function dragStart(){
+            dragItem = this;
+            setTimeout(() => this.style.display = "none", 0);
+        }
+        function dragEnd(){
+            setTimeout(() => this.style.display = "block", 0);
+            dragItem = null;
+        }
+
+        for(let j of choice){
+            j.addEventListener('dragover', dragOver);
+            j.addEventListener('dragenter', dragEnter);
+            j.addEventListener('dragleave', dragLeave);
+            j.addEventListener('drop', Drop);
+        }
+        function Drop(){
+            this.append(dragItem);
+        }
+        function dragOver(e){
+            e.preventDefault();
+        }
+        function dragEnter(e){
+            e.preventDefault();
+        }
+        function dragLeave(){
+            
+        }
+
+        // console.log()
+
+
+        
+
+        let submit3 = document.getElementById("submit3");
+
+        submit3.addEventListener('click', () => {
+
+            let score = 0;
+            items = $('.choice').find('.element')
+            let list1 = items[0].id;
+            let list2 = items[1].id;
+            let list3 = items[2].id;
+            let list4 = items[3].id;
+
+            console.log(list1);
+            console.log(items[1].id);
+            console.log(items[2].id);
+            console.log(items[3].id);
+            if(list1==quizq.one[0].answer[0] && list2==quizq.one[0].answer[1] && list3==quizq.one[0].answer[2] && list4==quizq.one[0].answer[3]){
+                score++;
+                
+            }
+            console.log(score);
+        })
+    </script>
+  </body>
+</html>
